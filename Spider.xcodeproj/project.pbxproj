@@ -7,21 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0C3A8A41C3DC2C30081CE65 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C3A8A31C3DC2C30081CE65 /* Card.swift */; };
 		F0D5733D1C3CCA3F00746598 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5733C1C3CCA3F00746598 /* AppDelegate.swift */; };
 		F0D5733F1C3CCA3F00746598 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5733E1C3CCA3F00746598 /* GameScene.swift */; };
-		F0D573411C3CCA3F00746598 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F0D573401C3CCA3F00746598 /* GameScene.sks */; };
 		F0D573431C3CCA3F00746598 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0D573421C3CCA3F00746598 /* Assets.xcassets */; };
 		F0D573461C3CCA3F00746598 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0D573441C3CCA3F00746598 /* MainMenu.xib */; };
+		F0D573551C3CEA2F00746598 /* Logo-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F0D573541C3CEA2E00746598 /* Logo-1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F0C3A8A31C3DC2C30081CE65 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F0D573391C3CCA3F00746598 /* Spider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0D5733C1C3CCA3F00746598 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0D5733E1C3CCA3F00746598 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		F0D573401C3CCA3F00746598 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		F0D573421C3CCA3F00746598 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0D573451C3CCA3F00746598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		F0D573471C3CCA3F00746598 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0D573541C3CEA2E00746598 /* Logo-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-1.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +58,11 @@
 			children = (
 				F0D5733C1C3CCA3F00746598 /* AppDelegate.swift */,
 				F0D5733E1C3CCA3F00746598 /* GameScene.swift */,
-				F0D573401C3CCA3F00746598 /* GameScene.sks */,
+				F0C3A8A31C3DC2C30081CE65 /* Card.swift */,
 				F0D573421C3CCA3F00746598 /* Assets.xcassets */,
 				F0D573441C3CCA3F00746598 /* MainMenu.xib */,
 				F0D573471C3CCA3F00746598 /* Info.plist */,
+				F0D573541C3CEA2E00746598 /* Logo-1.png */,
 			);
 			path = Spider;
 			sourceTree = "<group>";
@@ -123,7 +126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0D573431C3CCA3F00746598 /* Assets.xcassets in Resources */,
-				F0D573411C3CCA3F00746598 /* GameScene.sks in Resources */,
+				F0D573551C3CEA2F00746598 /* Logo-1.png in Resources */,
 				F0D573461C3CCA3F00746598 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0D5733F1C3CCA3F00746598 /* GameScene.swift in Sources */,
+				F0C3A8A41C3DC2C30081CE65 /* Card.swift in Sources */,
 				F0D5733D1C3CCA3F00746598 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +281,7 @@
 				F0D5734C1C3CCA3F00746598 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
