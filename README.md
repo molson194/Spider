@@ -1,0 +1,1 @@
+Spider Solitare for Mac
