@@ -15,14 +15,16 @@ class Card: SKSpriteNode {
     var value: Int
     var startPosition: CGFloat
     var canMove:Bool
+    var currMoveCards: [Card]
     
-    init(imageName: String, suit: String, value: Int) {
+    init(image: NSImage, suit: String, value: Int) {
         self.suit = suit
         self.value = value
         self.startPosition = 0
         self.canMove = false
-        let texture = SKTexture(imageNamed: imageName)
-        super.init(texture: texture, color: NSColor.clearColor(), size: CGSizeMake(100, 200))
+        self.currMoveCards = [Card]()
+        let texture = SKTexture(image: image)
+        super.init(texture: texture, color: NSColor.clearColor(), size: CGSizeMake(100, 150))
         self.userInteractionEnabled = true
     }
     
@@ -35,8 +37,12 @@ class Card: SKSpriteNode {
     // back side image
     
     func canPlace(column:Int) -> Bool {
+        if column>9 || column<0 {
+            return false
+        }
         let currFieldColumn = GameScene().getFieldCards()[column]
-        if (currFieldColumn.last?.value)!-1 == self.value {
+        
+        if (currFieldColumn.last?.value)!-1 == self.value || currFieldColumn.count == 0 {
             return true
         } else {
             return false
@@ -69,6 +75,11 @@ class Card: SKSpriteNode {
         canMove = canMoveFunc()
         if canMove {
             var currFieldCards = GameScene().getFieldCards()
+            while currFieldCards[Int(startPosition)].last! != self {
+                currMoveCards.append(currFieldCards[Int(startPosition)].last!)
+                currFieldCards[Int(startPosition)].removeLast()
+            }
+            currMoveCards.append(currFieldCards[Int(startPosition)].last!)
             currFieldCards[Int(startPosition)].removeLast()
             GameScene().setFieldCards(currFieldCards)
         }
@@ -76,30 +87,31 @@ class Card: SKSpriteNode {
     
     override func mouseDragged(theEvent: NSEvent) {
         if canMove {
-            let action = SKAction.moveTo(CGPoint(x:theEvent.locationInWindow.x,y:theEvent.locationInWindow.y),duration:0);
-            self.zPosition = 50;
-            self.runAction(action)
+            var i=0
+            for moveCard in currMoveCards {
+                let action = SKAction.moveTo(CGPoint(x:theEvent.locationInWindow.x,y:theEvent.locationInWindow.y-CGFloat(i*35)),duration:0);
+                moveCard.zPosition = CGFloat(50+i);
+                moveCard.runAction(action)
+                i--
+            }
         }
     }
     
     override func mouseUp(theEvent: NSEvent) {
         if canMove {
             var currFieldCards = GameScene().getFieldCards()
-            let x = floor(theEvent.locationInWindow.x/125)
-            if canPlace(Int(x)) {
-                let numCards = currFieldCards[Int(x)].count
-                self.zPosition = CGFloat(numCards);
-                currFieldCards[Int(x)].append(self)
-                // TODO bug outside of view
-                let action = SKAction.moveTo(CGPoint(x:x*125+80,y:CGFloat(650 - 35*numCards)),duration:0.1);
-                self.runAction(action)
-            } else {
-                let numCards = currFieldCards[Int(startPosition)].count
-                self.zPosition = CGFloat(numCards);
-                currFieldCards[Int(startPosition)].append(self)
-                let action = SKAction.moveTo(CGPoint(x:startPosition*125+80,y:CGFloat(650 - 35*numCards)),duration:0.1);
-                self.runAction(action)
+            var x = floor(theEvent.locationInWindow.x/125)
+            if !canPlace(Int(x)) {
+                x = startPosition
             }
+            for moveCard in currMoveCards.reverse() {
+                let numCards = currFieldCards[Int(x)].count
+                moveCard.zPosition = CGFloat(numCards);
+                currFieldCards[Int(x)].append(moveCard)
+                let action = SKAction.moveTo(CGPoint(x:x*125+80,y:CGFloat(700 - 35*numCards)),duration:0.1);
+                moveCard.runAction(action)
+            }
+            currMoveCards = [Card]()
             GameScene().setFieldCards(currFieldCards)
         }
     }
