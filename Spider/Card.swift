@@ -14,11 +14,13 @@ class Card: SKSpriteNode {
     var suit: String
     var value: Int
     var startPosition: CGFloat
+    var canMove:Bool
     
     init(imageName: String, suit: String, value: Int) {
         self.suit = suit
         self.value = value
         self.startPosition = 0
+        self.canMove = false
         let texture = SKTexture(imageNamed: imageName)
         super.init(texture: texture, color: NSColor.clearColor(), size: CGSizeMake(100, 200))
         self.userInteractionEnabled = true
@@ -30,42 +32,76 @@ class Card: SKSpriteNode {
     }
     
     // Card.isDone with stack
-    // Card.canMove() - Boolean Check below
-    // Card.canPlace(Card) --> Bool
     // back side image
     
+    func canPlace(column:Int) -> Bool {
+        let currFieldColumn = GameScene().getFieldCards()[column]
+        if (currFieldColumn.last?.value)!-1 == self.value {
+            return true
+        } else {
+            return false
+        }
+    }
     
-    //Set current position
+    
+    func canMoveFunc() -> Bool {
+        let currFieldColumn = GameScene().getFieldCards()[Int(startPosition)]
+        var hasMetCard = false
+        var prevCard = self
+        for currCard in currFieldColumn {
+            if hasMetCard {
+                if (currCard.value != prevCard.value - 1) || (currCard.suit != prevCard.suit){
+                    return false
+                }
+                prevCard = currCard
+            }
+            if self==currCard {
+                hasMetCard = true
+            }
+            
+        }
+        return true;
+    }
     
     override func mouseDown(theEvent: NSEvent) {
-        //Save original spot
         startPosition = theEvent.locationInWindow.x
         startPosition = floor(startPosition/125)
-        var currFieldCards = GameScene().getFieldCards()
-        currFieldCards[Int(startPosition)].removeLast()
-        GameScene().setFieldCards(currFieldCards)
+        canMove = canMoveFunc()
+        if canMove {
+            var currFieldCards = GameScene().getFieldCards()
+            currFieldCards[Int(startPosition)].removeLast()
+            GameScene().setFieldCards(currFieldCards)
+        }
     }
     
     override func mouseDragged(theEvent: NSEvent) {
-        //Check to see if can move
-        let action = SKAction.moveTo(CGPoint(x:theEvent.locationInWindow.x,y:theEvent.locationInWindow.y),duration:0);
-        self.zPosition = 50;
-        self.runAction(action)
+        if canMove {
+            let action = SKAction.moveTo(CGPoint(x:theEvent.locationInWindow.x,y:theEvent.locationInWindow.y),duration:0);
+            self.zPosition = 50;
+            self.runAction(action)
+        }
     }
     
     override func mouseUp(theEvent: NSEvent) {
-        // if can place, move from array and put in right spot, else put back to original spot, set z position
-        if false {
-            var x = theEvent.locationInWindow.x
-            x = floor(x/125)*125+80
-            // TODO bug outside of view
-            let action = SKAction.moveTo(CGPoint(x:x,y:200),duration:0.1);
-            self.runAction(action)
-        } else {
-            let action = SKAction.moveTo(CGPoint(x:startPosition*125+80,y:200),duration:0.1);
-            self.runAction(action)
+        if canMove {
+            var currFieldCards = GameScene().getFieldCards()
+            let x = floor(theEvent.locationInWindow.x/125)
+            if canPlace(Int(x)) {
+                let numCards = currFieldCards[Int(x)].count
+                self.zPosition = CGFloat(numCards);
+                currFieldCards[Int(x)].append(self)
+                // TODO bug outside of view
+                let action = SKAction.moveTo(CGPoint(x:x*125+80,y:CGFloat(650 - 35*numCards)),duration:0.1);
+                self.runAction(action)
+            } else {
+                let numCards = currFieldCards[Int(startPosition)].count
+                self.zPosition = CGFloat(numCards);
+                currFieldCards[Int(startPosition)].append(self)
+                let action = SKAction.moveTo(CGPoint(x:startPosition*125+80,y:CGFloat(650 - 35*numCards)),duration:0.1);
+                self.runAction(action)
+            }
+            GameScene().setFieldCards(currFieldCards)
         }
-        
     }
     
 }
