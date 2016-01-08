@@ -35,16 +35,12 @@ class GameScene: SKScene {
         self.addChild(dealCard)
 
         //TODO: if 1 deck-> cardSuit has spades...Keep adding cards until 8 sets
-        let cardSet = NSImage(named: "CardSet")
         var x = 0
         var y = 0
         for mySuit in cardSuit {
             for myValue in cardValue {
-                let cardImage = NSImage(size: CGSize(width: 100, height: 150))
-                cardImage.lockFocus()
-                cardSet?.drawInRect(NSRect(x: 0, y: 0, width: 100, height: 150), fromRect: NSRect(x: x%13*210, y: y%4*280, width: 179, height: 250), operation: NSCompositingOperation.CompositeCopy, fraction: 1)
-                cardImage.unlockFocus()
-                let newCard = Card(scene:self, image: cardImage, suit: mySuit, value: myValue)
+                let myImageName = String(format: "Cards/%@%d.png",mySuit,myValue)
+                let newCard = Card(scene:self, imageName: myImageName, suit: mySuit, value: myValue)
                 deck.append(newCard)
                 x++
             }

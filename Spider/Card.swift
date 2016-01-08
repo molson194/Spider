@@ -18,14 +18,14 @@ class Card: SKSpriteNode {
     var currMoveCards: [Card]
     var myScene: GameScene
     
-    init(scene:GameScene, image: NSImage, suit: String, value: Int) {
+    init(scene:GameScene, imageName: String, suit: String, value: Int) {
         self.myScene = scene
         self.suit = suit
         self.value = value
         self.startPosition = 0
         self.canMove = false
         self.currMoveCards = [Card]()
-        let texture = SKTexture(image: image)
+        let texture = SKTexture(imageNamed: imageName)
         super.init(texture: texture, color: NSColor.clearColor(), size: CGSizeMake(100, 150))
         self.userInteractionEnabled = true
     }
