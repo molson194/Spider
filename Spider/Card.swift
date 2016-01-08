@@ -105,7 +105,7 @@ class Card: SKSpriteNode {
         if canMove {
             var i=0
             for moveCard in currMoveCards {
-                let action = SKAction.moveTo(CGPoint(x:theEvent.locationInWindow.x,y:theEvent.locationInWindow.y-CGFloat(i*25)),duration:0);
+                let action = SKAction.moveTo(CGPoint(x:theEvent.locationInWindow.x,y:theEvent.locationInWindow.y-30-CGFloat(i*25)),duration:0);
                 moveCard.zPosition = CGFloat(50+i);
                 moveCard.runAction(action)
                 i--
@@ -121,10 +121,10 @@ class Card: SKSpriteNode {
                 x = startPosition
             }
             for moveCard in currMoveCards.reverse() {
+                currFieldCards[Int(x)].append(moveCard)
                 let numCards = currFieldCards[Int(x)].count
                 moveCard.zPosition = CGFloat(numCards);
-                currFieldCards[Int(x)].append(moveCard)
-                let action = SKAction.moveTo(CGPoint(x:x*125+80,y:CGFloat(700 - 25*numCards)),duration:0.1);
+                let action = SKAction.moveTo(CGPoint(x:x*125+80,y:CGFloat(700 - 25*(numCards-1))),duration:0.1);
                 moveCard.runAction(action)
             }
             currMoveCards = [Card]()

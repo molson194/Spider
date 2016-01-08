@@ -56,7 +56,7 @@ class GameScene: SKScene {
             let x = i%10
             let y = i/10
             let card = deck.removeFirst()
-            card.zPosition = CGFloat(y)
+            card.zPosition = CGFloat(y+1)
             if i<10 {
                 fieldCards.append([card])
             } else {
