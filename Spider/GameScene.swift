@@ -12,7 +12,7 @@ import GameplayKit
 
 class GameScene: SKScene {
     var cardValue: [Int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-    var cardSuit: [String] = ["Diamonds","Spades", "Spades", "Spades","Spades","Spades", "Spades", "Spades"]
+    var cardSuit: [String] = ["Spades","Spades", "Spades", "Spades","Spades","Spades", "Spades", "Spades"]
     var fieldCards:[[Card]] = [[Card]]()
     var deck:[Card] = [Card]()
     var decksComplete: Int = 0
@@ -26,7 +26,7 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!"
+        myLabel.text = "Spider by Matt"
         myLabel.fontSize = 45
         myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
         self.addChild(myLabel)
@@ -55,6 +55,10 @@ class GameScene: SKScene {
             let x = i%10
             let y = i/10
             let card = deck.removeFirst()
+            if i < 44 {
+                card.texture = SKTexture(imageNamed: "CardBack")
+                card.isFlipped = true
+            }
             card.zPosition = CGFloat(y+1)
             if i<10 {
                 fieldCards.append([card])

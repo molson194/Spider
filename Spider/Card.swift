@@ -15,6 +15,7 @@ class Card: SKSpriteNode {
     var value: Int
     var startPosition: CGFloat
     var canMove:Bool
+    var isFlipped:Bool
     var currMoveCards: [Card]
     var myScene: GameScene
     
@@ -24,6 +25,7 @@ class Card: SKSpriteNode {
         self.value = value
         self.startPosition = 0
         self.canMove = false
+        self.isFlipped = false
         self.currMoveCards = [Card]()
         let texture = SKTexture(imageNamed: imageName)
         super.init(texture: texture, color: NSColor.clearColor(), size: CGSizeMake(110, 150))
@@ -36,10 +38,9 @@ class Card: SKSpriteNode {
     }
     
     func isDone(column:Int) -> Bool {
-        let currFieldColumn = myScene.fieldCards[column]
-        let suit = currFieldColumn.last?.suit
+        let suit = myScene.fieldCards[column].last?.suit
         var value = 1
-        for currCard in currFieldColumn.reverse() {
+        for currCard in myScene.fieldCards[column].reverse() {
             if (currCard.value != value) || (currCard.suit != suit){
                 return false
             }
@@ -50,29 +51,28 @@ class Card: SKSpriteNode {
         }
         return false
     }
-    // TODO back side image
     
     func canPlace(column:Int) -> Bool {
         if column>9 || column<0 {
             return false
         }
-        let currFieldColumn = myScene.fieldCards[column]
-        if currFieldColumn.count == 0 {
+        if myScene.fieldCards[column].count == 0 {
             return true
         }
-        if (currFieldColumn.last?.value)!-1 == self.value {
+        if (myScene.fieldCards[column].last?.value)!-1 == self.value {
             return true
         } else {
             return false
         }
     }
     
-    
     func canMoveFunc() -> Bool {
-        let currFieldColumn = myScene.fieldCards[Int(startPosition)]
+        if isFlipped {
+            return false
+        }
         var hasMetCard = false
         var prevCard = self
-        for currCard in currFieldColumn {
+        for currCard in myScene.fieldCards[Int(startPosition)] {
             if hasMetCard {
                 if (currCard.value != prevCard.value - 1) || (currCard.suit != prevCard.suit){
                     return false
@@ -92,12 +92,10 @@ class Card: SKSpriteNode {
         startPosition = floor(startPosition/125)
         canMove = canMoveFunc()
         if canMove {
-            var currFieldCards = myScene.fieldCards
-            while currFieldCards[Int(startPosition)].last! != self {
-                currMoveCards.append(currFieldCards[Int(startPosition)].removeLast())
+            while myScene.fieldCards[Int(startPosition)].last! != self {
+                currMoveCards.append(myScene.fieldCards[Int(startPosition)].removeLast())
             }
-            currMoveCards.append(currFieldCards[Int(startPosition)].removeLast())
-            myScene.fieldCards = currFieldCards
+            currMoveCards.append(myScene.fieldCards[Int(startPosition)].removeLast())
         }
     }
     
@@ -115,32 +113,41 @@ class Card: SKSpriteNode {
     
     override func mouseUp(theEvent: NSEvent) {
         if canMove {
-            var currFieldCards = myScene.fieldCards
             var x = floor(theEvent.locationInWindow.x/125)
             if !canPlace(Int(x)) {
                 x = startPosition
             }
             for moveCard in currMoveCards.reverse() {
-                currFieldCards[Int(x)].append(moveCard)
-                let numCards = currFieldCards[Int(x)].count
+                myScene.fieldCards[Int(x)].append(moveCard)
+                let numCards = myScene.fieldCards[Int(x)].count
                 moveCard.zPosition = CGFloat(numCards);
                 let action = SKAction.moveTo(CGPoint(x:x*125+80,y:CGFloat(650-25*(numCards-1))),duration:0.1);
                 moveCard.runAction(action)
             }
+            if myScene.fieldCards[Int(startPosition)].count>0 {
+                if ((myScene.fieldCards[Int(startPosition)].last?.isFlipped) == true) {
+                    myScene.fieldCards[Int(startPosition)].last?.texture = SKTexture(imageNamed: String(format: "Cards/%@%d.png",(myScene.fieldCards[Int(startPosition)].last?.suit)!,(myScene.fieldCards[Int(startPosition)].last?.value)!))
+                    myScene.fieldCards[Int(startPosition)].last?.isFlipped = false
+                }
+            }
             currMoveCards = [Card]()
-            myScene.fieldCards = currFieldCards
             if isDone(Int(x)) {
                 for _ in 1...12 {
                     //TODO if number of decks done is 8 game over
-                    let card = currFieldCards[Int(x)].removeLast()
+                    let card = myScene.fieldCards[Int(x)].removeLast()
                     card.removeFromParent()
                 }
-                let card = currFieldCards[Int(x)].removeLast()
+                let card = myScene.fieldCards[Int(x)].removeLast()
                 card.zPosition = 35 + CGFloat(myScene.decksComplete)
                 let action = SKAction.moveTo(CGPoint(x:150+30*CGFloat(myScene.decksComplete),y:150), duration: 0.5);
                 card.runAction(action)
                 myScene.decksComplete++
-                myScene.fieldCards = currFieldCards
+                if myScene.fieldCards[Int(x)].count>0 {
+                    if ((myScene.fieldCards[Int(x)].last?.isFlipped) == true) {
+                        myScene.fieldCards[Int(x)].last?.texture = SKTexture(imageNamed: String(format: "Cards/%@%d.png",(myScene.fieldCards[Int(x)].last?.suit)!,(myScene.fieldCards[Int(x)].last?.value)!))
+                        myScene.fieldCards[Int(x)].last?.isFlipped = false
+                    }
+                }
             }
         }
     }
