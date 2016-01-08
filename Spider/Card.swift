@@ -26,7 +26,7 @@ class Card: SKSpriteNode {
         self.canMove = false
         self.currMoveCards = [Card]()
         let texture = SKTexture(imageNamed: imageName)
-        super.init(texture: texture, color: NSColor.clearColor(), size: CGSizeMake(100, 150))
+        super.init(texture: texture, color: NSColor.clearColor(), size: CGSizeMake(110, 150))
         self.userInteractionEnabled = true
     }
     
@@ -124,20 +124,24 @@ class Card: SKSpriteNode {
                 currFieldCards[Int(x)].append(moveCard)
                 let numCards = currFieldCards[Int(x)].count
                 moveCard.zPosition = CGFloat(numCards);
-                let action = SKAction.moveTo(CGPoint(x:x*125+80,y:CGFloat(650 - 25*(numCards-1))),duration:0.1);
+                let action = SKAction.moveTo(CGPoint(x:x*125+80,y:CGFloat(650-25*(numCards-1))),duration:0.1);
                 moveCard.runAction(action)
             }
             currMoveCards = [Card]()
+            myScene.fieldCards = currFieldCards
             if isDone(Int(x)) {
                 for _ in 1...12 {
-                //increment number of decks done, move the king to corner, if number of decks done is 8 game over
+                    //TODO if number of decks done is 8 game over
                     let card = currFieldCards[Int(x)].removeLast()
                     card.removeFromParent()
-                    
                 }
-                //TODO move king
+                let card = currFieldCards[Int(x)].removeLast()
+                card.zPosition = 35 + CGFloat(myScene.decksComplete)
+                let action = SKAction.moveTo(CGPoint(x:150+30*CGFloat(myScene.decksComplete),y:150), duration: 0.5);
+                card.runAction(action)
+                myScene.decksComplete++
+                myScene.fieldCards = currFieldCards
             }
-            myScene.fieldCards = currFieldCards
         }
     }
     

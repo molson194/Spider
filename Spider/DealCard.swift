@@ -35,18 +35,16 @@ class DealCard: SKSpriteNode {
             myFieldCards[i].append(card)
             let numCards = myFieldCards[i].count
             card.zPosition = CGFloat(numCards)
-            card.position = CGPointMake(CGFloat(125*i+80),CGFloat(650 - 25*numCards))
+            card.position = CGPointMake(CGFloat(125*i+80),CGFloat(650-25*(numCards-1)))
             myScene.addChild(card)
             if isDone(i) {
                 for _ in 1...12 {
-                    //increment number of decks done, move the king to corner, if number of decks done is 8 game over
                     let card = myFieldCards[i].removeLast()
                     card.removeFromParent()
                 }
-                //TODO move king
             }
             i++
-        } // TODO add animation http://stackoverflow.com/questions/27873931/swift-sprite-kit-how-do-you-set-an-animation-for-a-random-time
+        }
         if myDeck.count==0 {
             self.removeFromParent()
         }

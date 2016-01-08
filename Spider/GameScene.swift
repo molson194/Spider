@@ -12,9 +12,17 @@ import GameplayKit
 
 class GameScene: SKScene {
     var cardValue: [Int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-    var cardSuit: [String] = ["Diamonds","Spades", "Hearts", "Clubs","Diamonds","Spades", "Hearts", "Clubs"]
+    var cardSuit: [String] = ["Diamonds","Spades", "Spades", "Spades","Spades","Spades", "Spades", "Spades"]
     var fieldCards:[[Card]] = [[Card]]()
     var deck:[Card] = [Card]()
+    var decksComplete: Int = 0
+    
+    //TODO resizing and moving card mouse location
+    // TODO add animation http://stackoverflow.com/questions/27873931/swift-sprite-kit-how-do-you-set-an-animation-for-a-random-time
+    // TODO new game menu popup with deck number selection
+    // TODO stats
+    // TODO replay game (random seed)
+    // TODO undo
     
     override func didMoveToView(view: SKView) {
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
@@ -34,17 +42,12 @@ class GameScene: SKScene {
         dealCard.zPosition = 1
         self.addChild(dealCard)
 
-        //TODO: if 1 deck-> cardSuit has spades...Keep adding cards until 8 sets
-        var x = 0
-        var y = 0
         for mySuit in cardSuit {
             for myValue in cardValue {
                 let myImageName = String(format: "Cards/%@%d.png",mySuit,myValue)
                 let newCard = Card(scene:self, imageName: myImageName, suit: mySuit, value: myValue)
                 deck.append(newCard)
-                x++
             }
-            y++
         }
         deck = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(deck) as! [Card]
         var i = 0
@@ -58,7 +61,7 @@ class GameScene: SKScene {
             } else {
                 fieldCards[x].append(card)
             }
-            card.position = CGPointMake(CGFloat(125*x+80),CGFloat(650 - 25*y))
+            card.position = CGPointMake(CGFloat(125*x+80),CGFloat(650-25*y))
             self.addChild(card)
             i++
         }
