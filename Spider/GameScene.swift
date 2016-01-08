@@ -40,7 +40,7 @@ class GameScene: SKScene {
         var y = 0
         for mySuit in cardSuit {
             for myValue in cardValue {
-                let cardImage = NSImage(size: CGSize(width: 100, height: 200))
+                let cardImage = NSImage(size: CGSize(width: 100, height: 150))
                 cardImage.lockFocus()
                 cardSet?.drawInRect(NSRect(x: 0, y: 0, width: 100, height: 150), fromRect: NSRect(x: x%13*210, y: y%4*280, width: 179, height: 250), operation: NSCompositingOperation.CompositeCopy, fraction: 1)
                 cardImage.unlockFocus()
@@ -62,7 +62,7 @@ class GameScene: SKScene {
             } else {
                 fieldCards[x].append(card)
             }
-            card.position = CGPointMake(CGFloat(125*x+80),CGFloat(700 - 25*y))
+            card.position = CGPointMake(CGFloat(125*x+80),CGFloat(650 - 25*y))
             self.addChild(card)
             i++
         }

@@ -104,9 +104,9 @@ class Card: SKSpriteNode {
     override func mouseDragged(theEvent: NSEvent) {
         if canMove {
             var i=0
-            for moveCard in currMoveCards {
-                let action = SKAction.moveTo(CGPoint(x:theEvent.locationInWindow.x,y:theEvent.locationInWindow.y-30-CGFloat(i*25)),duration:0);
-                moveCard.zPosition = CGFloat(50+i);
+            for moveCard in currMoveCards.reverse() {
+                let action = SKAction.moveTo(CGPoint(x:theEvent.locationInWindow.x,y:theEvent.locationInWindow.y-40+CGFloat(i*25)),duration:0);
+                moveCard.zPosition = CGFloat(50-i);
                 moveCard.runAction(action)
                 i--
             }
@@ -124,7 +124,7 @@ class Card: SKSpriteNode {
                 currFieldCards[Int(x)].append(moveCard)
                 let numCards = currFieldCards[Int(x)].count
                 moveCard.zPosition = CGFloat(numCards);
-                let action = SKAction.moveTo(CGPoint(x:x*125+80,y:CGFloat(700 - 25*(numCards-1))),duration:0.1);
+                let action = SKAction.moveTo(CGPoint(x:x*125+80,y:CGFloat(650 - 25*(numCards-1))),duration:0.1);
                 moveCard.runAction(action)
             }
             currMoveCards = [Card]()

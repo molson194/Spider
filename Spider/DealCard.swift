@@ -35,7 +35,7 @@ class DealCard: SKSpriteNode {
             myFieldCards[i].append(card)
             let numCards = myFieldCards[i].count
             card.zPosition = CGFloat(numCards)
-            card.position = CGPointMake(CGFloat(125*i+80),CGFloat(700 - 25*numCards))
+            card.position = CGPointMake(CGFloat(125*i+80),CGFloat(650 - 25*numCards))
             myScene.addChild(card)
             if isDone(i) {
                 for _ in 1...12 {
