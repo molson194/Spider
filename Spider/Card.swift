@@ -16,8 +16,10 @@ class Card: SKSpriteNode {
     var startPosition: CGFloat
     var canMove:Bool
     var currMoveCards: [Card]
+    var myScene: GameScene
     
-    init(image: NSImage, suit: String, value: Int) {
+    init(scene:GameScene, image: NSImage, suit: String, value: Int) {
+        self.myScene = scene
         self.suit = suit
         self.value = value
         self.startPosition = 0
@@ -33,16 +35,32 @@ class Card: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // Card.isDone with stack
-    // back side image
+    func isDone(column:Int) -> Bool {
+        let currFieldColumn = myScene.fieldCards[column]
+        let suit = currFieldColumn.last?.suit
+        var value = 1
+        for currCard in currFieldColumn.reverse() {
+            if (currCard.value != value) || (currCard.suit != suit){
+                return false
+            }
+            if value==13 {
+                return true
+            }
+            value++
+        }
+        return false
+    }
+    // TODO back side image
     
     func canPlace(column:Int) -> Bool {
         if column>9 || column<0 {
             return false
         }
-        let currFieldColumn = GameScene().getFieldCards()[column]
-        
-        if (currFieldColumn.last?.value)!-1 == self.value || currFieldColumn.count == 0 {
+        let currFieldColumn = myScene.fieldCards[column]
+        if currFieldColumn.count == 0 {
+            return true
+        }
+        if (currFieldColumn.last?.value)!-1 == self.value {
             return true
         } else {
             return false
@@ -51,7 +69,7 @@ class Card: SKSpriteNode {
     
     
     func canMoveFunc() -> Bool {
-        let currFieldColumn = GameScene().getFieldCards()[Int(startPosition)]
+        let currFieldColumn = myScene.fieldCards[Int(startPosition)]
         var hasMetCard = false
         var prevCard = self
         for currCard in currFieldColumn {
@@ -74,14 +92,12 @@ class Card: SKSpriteNode {
         startPosition = floor(startPosition/125)
         canMove = canMoveFunc()
         if canMove {
-            var currFieldCards = GameScene().getFieldCards()
+            var currFieldCards = myScene.fieldCards
             while currFieldCards[Int(startPosition)].last! != self {
-                currMoveCards.append(currFieldCards[Int(startPosition)].last!)
-                currFieldCards[Int(startPosition)].removeLast()
+                currMoveCards.append(currFieldCards[Int(startPosition)].removeLast())
             }
-            currMoveCards.append(currFieldCards[Int(startPosition)].last!)
-            currFieldCards[Int(startPosition)].removeLast()
-            GameScene().setFieldCards(currFieldCards)
+            currMoveCards.append(currFieldCards[Int(startPosition)].removeLast())
+            myScene.fieldCards = currFieldCards
         }
     }
     
@@ -89,7 +105,7 @@ class Card: SKSpriteNode {
         if canMove {
             var i=0
             for moveCard in currMoveCards {
-                let action = SKAction.moveTo(CGPoint(x:theEvent.locationInWindow.x,y:theEvent.locationInWindow.y-CGFloat(i*35)),duration:0);
+                let action = SKAction.moveTo(CGPoint(x:theEvent.locationInWindow.x,y:theEvent.locationInWindow.y-CGFloat(i*25)),duration:0);
                 moveCard.zPosition = CGFloat(50+i);
                 moveCard.runAction(action)
                 i--
@@ -99,7 +115,7 @@ class Card: SKSpriteNode {
     
     override func mouseUp(theEvent: NSEvent) {
         if canMove {
-            var currFieldCards = GameScene().getFieldCards()
+            var currFieldCards = myScene.fieldCards
             var x = floor(theEvent.locationInWindow.x/125)
             if !canPlace(Int(x)) {
                 x = startPosition
@@ -108,11 +124,20 @@ class Card: SKSpriteNode {
                 let numCards = currFieldCards[Int(x)].count
                 moveCard.zPosition = CGFloat(numCards);
                 currFieldCards[Int(x)].append(moveCard)
-                let action = SKAction.moveTo(CGPoint(x:x*125+80,y:CGFloat(700 - 35*numCards)),duration:0.1);
+                let action = SKAction.moveTo(CGPoint(x:x*125+80,y:CGFloat(700 - 25*numCards)),duration:0.1);
                 moveCard.runAction(action)
             }
             currMoveCards = [Card]()
-            GameScene().setFieldCards(currFieldCards)
+            if isDone(Int(x)) {
+                for _ in 1...12 {
+                //increment number of decks done, move the king to corner, if number of decks done is 8 game over
+                    let card = currFieldCards[Int(x)].removeLast()
+                    card.removeFromParent()
+                    
+                }
+                //TODO move king
+            }
+            myScene.fieldCards = currFieldCards
         }
     }
     

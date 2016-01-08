@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F021A7C61C3E0E3E008CE2CF /* CardSet.png in Resources */ = {isa = PBXBuildFile; fileRef = F021A7C51C3E0E3E008CE2CF /* CardSet.png */; };
+		F088639E1C3F4AA200D42D00 /* DealCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F088639D1C3F4AA200D42D00 /* DealCard.swift */; };
+		F09BC1631C3E54CB00F369FD /* FeltBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F09BC1621C3E54CB00F369FD /* FeltBackground.jpg */; };
 		F0C3A8A41C3DC2C30081CE65 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C3A8A31C3DC2C30081CE65 /* Card.swift */; };
 		F0C3DB2D1C3E45EB001E2608 /* CardBack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0C3DB2C1C3E45EB001E2608 /* CardBack.jpg */; };
 		F0D5733D1C3CCA3F00746598 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5733C1C3CCA3F00746598 /* AppDelegate.swift */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		F021A7C51C3E0E3E008CE2CF /* CardSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CardSet.png; sourceTree = "<group>"; };
+		F088639D1C3F4AA200D42D00 /* DealCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DealCard.swift; sourceTree = "<group>"; };
+		F09BC1621C3E54CB00F369FD /* FeltBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FeltBackground.jpg; sourceTree = "<group>"; };
 		F0C3A8A31C3DC2C30081CE65 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F0C3DB2C1C3E45EB001E2608 /* CardBack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CardBack.jpg; sourceTree = "<group>"; };
 		F0D573391C3CCA3F00746598 /* Spider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spider.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,11 +65,13 @@
 				F0D5733C1C3CCA3F00746598 /* AppDelegate.swift */,
 				F0D5733E1C3CCA3F00746598 /* GameScene.swift */,
 				F0C3A8A31C3DC2C30081CE65 /* Card.swift */,
+				F088639D1C3F4AA200D42D00 /* DealCard.swift */,
 				F0D573421C3CCA3F00746598 /* Assets.xcassets */,
 				F0D573441C3CCA3F00746598 /* MainMenu.xib */,
 				F0D573471C3CCA3F00746598 /* Info.plist */,
 				F021A7C51C3E0E3E008CE2CF /* CardSet.png */,
 				F0C3DB2C1C3E45EB001E2608 /* CardBack.jpg */,
+				F09BC1621C3E54CB00F369FD /* FeltBackground.jpg */,
 			);
 			path = Spider;
 			sourceTree = "<group>";
@@ -129,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0D573431C3CCA3F00746598 /* Assets.xcassets in Resources */,
+				F09BC1631C3E54CB00F369FD /* FeltBackground.jpg in Resources */,
 				F021A7C61C3E0E3E008CE2CF /* CardSet.png in Resources */,
 				F0C3DB2D1C3E45EB001E2608 /* CardBack.jpg in Resources */,
 				F0D573461C3CCA3F00746598 /* MainMenu.xib in Resources */,
@@ -143,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0D5733F1C3CCA3F00746598 /* GameScene.swift in Sources */,
+				F088639E1C3F4AA200D42D00 /* DealCard.swift in Sources */,
 				F0C3A8A41C3DC2C30081CE65 /* Card.swift in Sources */,
 				F0D5733D1C3CCA3F00746598 /* AppDelegate.swift in Sources */,
 			);
