@@ -28,7 +28,7 @@ class Card: SKSpriteNode {
         self.isFlipped = false
         self.currMoveCards = [Card]()
         let texture = SKTexture(imageNamed: imageName)
-        super.init(texture: texture, color: NSColor.clearColor(), size: CGSizeMake(110, 150))
+        super.init(texture: texture, color: NSColor.clearColor(), size: CGSizeMake(myScene.width/11, myScene.width/8))
         self.userInteractionEnabled = true
     }
     
@@ -89,7 +89,7 @@ class Card: SKSpriteNode {
     
     override func mouseDown(theEvent: NSEvent) {
         startPosition = theEvent.locationInNode(myScene).x
-        startPosition = floor((startPosition-10)/125)
+        startPosition = floor(startPosition*10/myScene.width)
         canMove = canMoveFunc()
         if canMove {
             while myScene.fieldCards[Int(startPosition)].last != self {
@@ -113,7 +113,7 @@ class Card: SKSpriteNode {
     
     override func mouseUp(theEvent: NSEvent) {
         if canMove {
-            var x = floor(theEvent.locationInNode(myScene).x/125)
+            var x = floor(theEvent.locationInNode(myScene).x*10/myScene.width)
             if !canPlace(Int(x)) {
                 x = startPosition
             } else {
@@ -123,7 +123,7 @@ class Card: SKSpriteNode {
                 myScene.fieldCards[Int(x)].append(moveCard)
                 let numCards = myScene.fieldCards[Int(x)].count
                 moveCard.zPosition = CGFloat(numCards);
-                let action = SKAction.moveTo(CGPoint(x:x*125+80,y:CGFloat(650-25*(numCards-1))),duration:0.1);
+                let action = SKAction.moveTo(CGPoint(x:x*myScene.width/10+myScene.width/20,y:myScene.height-myScene.width/15-CGFloat(25*(numCards-1))),duration:0.1);
                 moveCard.runAction(action)
             }
             if myScene.fieldCards[Int(startPosition)].count>0 {

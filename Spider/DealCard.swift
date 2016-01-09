@@ -20,8 +20,8 @@ class DealCard: SKSpriteNode {
     init (scene:GameScene) {
         myScene = scene
         let texture = SKTexture(imageNamed: "CardBack")
-        super.init(texture: texture, color: NSColor.clearColor(), size: CGSizeMake(110, 150))
-        self.position = CGPoint(x: 1200, y: 150)
+        super.init(texture: texture, color: NSColor.clearColor(), size: CGSizeMake(myScene.width/11, myScene.width/8))
+        self.position = CGPoint(x: myScene.width*13/14, y: myScene.width/14)
         self.userInteractionEnabled = true
     }
 
@@ -32,7 +32,7 @@ class DealCard: SKSpriteNode {
             myScene.fieldCards[i].append(card)
             let numCards = myScene.fieldCards[i].count
             card.zPosition = CGFloat(numCards)
-            card.position = CGPointMake(CGFloat(125*i+80),CGFloat(650-25*(numCards-1)))
+            card.position = CGPointMake(myScene.width/10*CGFloat(i)+myScene.width/20,myScene.height-myScene.width/15-CGFloat(25*(numCards-1)))
             myScene.addChild(card)
             myScene.cardsLeft.text = String(format:"%d",myScene.deck.count/10)
             anyDone(i)

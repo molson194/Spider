@@ -32,7 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         
         let numSuits = defaults.integerForKey("NumSuits")
-        scene.scaleMode = .AspectFill
+        scene.scaleMode = .Fill
         scene.numDecks(numSuits)
         self.skView!.presentScene(scene)
             

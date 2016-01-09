@@ -19,12 +19,16 @@ class GameScene: SKScene {
     var moves:[Move] = [Move]()
     var redoMoves:[Move] = [Move]()
     var cardsLeft:SKLabelNode = SKLabelNode(fontNamed:"Helvetica-Bold")
+    var height:CGFloat = 0
+    var width:CGFloat = 0
     
     // TODO LONG TERM: add animation, stats
-    // TODO resizing:keep last size. height and width constraints
     // TODO undo newdeal and king
     
     override func didMoveToView(view: SKView) {
+        
+        height = self.frame.size.height
+        width = self.frame.size.width
         
         let background = SKSpriteNode(imageNamed: "FeltBackground")
         background.position = CGPoint(x:0,y:0)
@@ -40,7 +44,7 @@ class GameScene: SKScene {
         cardsLeft.text = "5"
         cardsLeft.zPosition = 1
         cardsLeft.fontSize = 15
-        cardsLeft.position = CGPoint(x:1270, y:90)
+        cardsLeft.position = CGPoint(x:width*13/14-75, y:30)
         self.addChild(cardsLeft)
 
         for mySuit in cardSuit {
@@ -66,7 +70,7 @@ class GameScene: SKScene {
             } else {
                 fieldCards[x].append(card)
             }
-            card.position = CGPointMake(CGFloat(125*x+80),CGFloat(650-25*y))
+            card.position = CGPointMake(width/10*CGFloat(x)+width/20,height-width/15-CGFloat(25*y))
             self.addChild(card)
         }
     }

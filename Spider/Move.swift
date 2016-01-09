@@ -36,7 +36,7 @@ class Move: NSObject {
             
             let numCards = myScene.fieldCards[sPosition].count
             card.zPosition = CGFloat(numCards);
-            let action = SKAction.moveTo(CGPoint(x:CGFloat(sPosition*125+80),y:CGFloat(650-25*(numCards-1))),duration:0.1);
+            let action = SKAction.moveTo(CGPoint(x:CGFloat(sPosition)*myScene.width/10+myScene.width/20,y:myScene.height-myScene.width/15-CGFloat(25*(numCards-1))),duration:0.1);
             card.runAction(action)
         }
     }
@@ -48,7 +48,7 @@ class Move: NSObject {
             
             let numCards = myScene.fieldCards[ePosition].count
             card.zPosition = CGFloat(numCards);
-            let action = SKAction.moveTo(CGPoint(x:CGFloat(ePosition*125+80),y:CGFloat(650-25*(numCards-1))),duration:0.1);
+            let action = SKAction.moveTo(CGPoint(x:CGFloat(ePosition)*myScene.width/10+myScene.width/20,y:myScene.height-CGFloat(25*(numCards-1))),duration:0.1);
             card.runAction(action)
         }
         if flipLast {
