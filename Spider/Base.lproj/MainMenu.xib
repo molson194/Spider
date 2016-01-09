@@ -63,12 +63,29 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Menu" id="Ekw-FF-scX" userLabel="Game">
+                <menuItem title="Game" id="Ekw-FF-scX" userLabel="Game">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Menu" id="uLr-Z7-ttl" userLabel="Game">
+                    <menu key="submenu" title="Game" id="uLr-Z7-ttl">
                         <items>
-                            <menuItem title="Item" id="qmc-XN-TPm">
-                                <modifierMask key="keyEquivalentModifierMask"/>
+                            <menuItem title="New Game" keyEquivalent="n" id="qmc-XN-TPm">
+                                <connections>
+                                    <action selector="newGame:" target="-1" id="uQU-nq-DKq"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Replay Game" keyEquivalent="r" id="a28-fr-e1B">
+                                <connections>
+                                    <action selector="replayGame:" target="-1" id="k1q-la-BL5"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Undo Move" keyEquivalent="z" id="45B-Hy-RM6">
+                                <connections>
+                                    <action selector="undoMove:" target="494" id="MdS-8I-nKZ"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Redo Move" keyEquivalent="Z" id="EtS-v4-Sfm">
+                                <connections>
+                                    <action selector="redoMove:" target="494" id="xxT-O1-kdK"/>
+                                </connections>
                             </menuItem>
                         </items>
                     </menu>

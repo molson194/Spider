@@ -72,18 +72,17 @@ class GameScene: SKScene {
         }
     }
     
-    override func keyDown(theEvent: NSEvent) {
-        print(theEvent.keyCode)
-        if (theEvent.keyCode == 6) {
-            if moves.count > 0 {
-                moves.last!.undo()
-                redoMoves.append(moves.removeLast())
-            }
-        } else if (theEvent.keyCode == 16){
-            if redoMoves.count > 0 {
-                redoMoves.last!.redo()
-                moves.append(redoMoves.removeLast())
-            }
+    func undoPressed() {
+        if moves.count > 0 {
+            moves.last!.undo()
+            redoMoves.append(moves.removeLast())
+        }
+    }
+    
+    func redoPressed() {
+        if redoMoves.count > 0 {
+            redoMoves.last!.redo()
+            moves.append(redoMoves.removeLast())
         }
     }
 }

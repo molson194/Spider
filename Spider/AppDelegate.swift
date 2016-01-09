@@ -31,4 +31,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
         return true
     }
+    
+    @IBAction func undoMove(id: NSMenuItem) {
+        let myScene = self.skView.scene as! GameScene
+        myScene.undoPressed()
+    }
+    
+    @IBAction func redoMove(id: NSMenuItem) {
+        let myScene = self.skView.scene as! GameScene
+        myScene.redoPressed()
+    }
+    
 }
