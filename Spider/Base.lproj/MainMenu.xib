@@ -63,6 +63,16 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Menu" id="Ekw-FF-scX" userLabel="Game">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Menu" id="uLr-Z7-ttl" userLabel="Game">
+                        <items>
+                            <menuItem title="Item" id="qmc-XN-TPm">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="Window" id="19">
                     <menu key="submenu" title="Window" systemMenu="window" id="24">
                         <items>

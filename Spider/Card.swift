@@ -116,6 +116,8 @@ class Card: SKSpriteNode {
             var x = floor(theEvent.locationInWindow.x/125)
             if !canPlace(Int(x)) {
                 x = startPosition
+            } else {
+                myScene.moves.append(Move(scene:myScene, startPos: Int(startPosition),endPos: Int(x),cards: currMoveCards))
             }
             for moveCard in currMoveCards.reverse() {
                 myScene.fieldCards[Int(x)].append(moveCard)
@@ -128,6 +130,7 @@ class Card: SKSpriteNode {
                 if ((myScene.fieldCards[Int(startPosition)].last?.isFlipped) == true) {
                     myScene.fieldCards[Int(startPosition)].last?.texture = SKTexture(imageNamed: String(format: "Cards/%@%d.png",(myScene.fieldCards[Int(startPosition)].last?.suit)!,(myScene.fieldCards[Int(startPosition)].last?.value)!))
                     myScene.fieldCards[Int(startPosition)].last?.isFlipped = false
+                    myScene.moves.last!.flipLast = true
                 }
             }
             currMoveCards = [Card]()

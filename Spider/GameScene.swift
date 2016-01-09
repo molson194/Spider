@@ -16,13 +16,15 @@ class GameScene: SKScene {
     var fieldCards:[[Card]] = [[Card]]()
     var deck:[Card] = [Card]()
     var decksComplete: Int = 0
+    var moves:[Move] = [Move]()
+    var redoMoves:[Move] = [Move]()
     
     //TODO resizing and moving card mouse location
     // TODO add animation http://stackoverflow.com/questions/27873931/swift-sprite-kit-how-do-you-set-an-animation-for-a-random-time
     // TODO new game menu popup with deck number selection
     // TODO stats
     // TODO replay game (random seed)
-    // TODO undo
+    // TODO undo newdeal and king
     
     override func didMoveToView(view: SKView) {
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
@@ -50,8 +52,8 @@ class GameScene: SKScene {
             }
         }
         deck = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(deck) as! [Card]
-        var i = 0
-        while i < 54 {
+
+        for i in 0...53 {
             let x = i%10
             let y = i/10
             let card = deck.removeFirst()
@@ -67,7 +69,21 @@ class GameScene: SKScene {
             }
             card.position = CGPointMake(CGFloat(125*x+80),CGFloat(650-25*y))
             self.addChild(card)
-            i++
+        }
+    }
+    
+    override func keyDown(theEvent: NSEvent) {
+        print(theEvent.keyCode)
+        if (theEvent.keyCode == 6) {
+            if moves.count > 0 {
+                moves.last!.undo()
+                redoMoves.append(moves.removeLast())
+            }
+        } else if (theEvent.keyCode == 16){
+            if redoMoves.count > 0 {
+                redoMoves.last!.redo()
+                moves.append(redoMoves.removeLast())
+            }
         }
     }
 }
