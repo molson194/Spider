@@ -54,8 +54,9 @@ class DealCard: SKSpriteNode {
                     myScene.fieldCards[i].removeLast().removeFromParent()
                 }
                 let card = myScene.fieldCards[i].removeLast()
+                myScene.cannotSelectKings.append(card)
                 card.zPosition = 35 + CGFloat(myScene.decksComplete)
-                let action = SKAction.moveTo(CGPoint(x:150+30*CGFloat(myScene.decksComplete),y:150), duration: 0.5);
+                let action = SKAction.moveTo(CGPoint(x:myScene.width/14+30*CGFloat(myScene.decksComplete),y:myScene.width/14), duration: 0.5);
                 card.runAction(action)
                 myScene.decksComplete++
                 if myScene.fieldCards[i].count>0 {

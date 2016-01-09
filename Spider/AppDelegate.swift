@@ -66,7 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func newGame(id: NSMenuItem) {
         let newGameController = NewGameViewController()
         popover.contentViewController = newGameController
-        let positioningRect = NSRect(x: CGRectGetMidX(window.frame)-130, y: CGRectGetHeight(window.frame)-30, width: 100, height: 100)
+        let positioningRect = NSRect(x: CGRectGetMidX(window.frame), y: CGRectGetHeight(window.frame)-30, width: 100, height: 100)
         popover.showRelativeToRect(positioningRect, ofView: self.skView, preferredEdge: NSRectEdge.MinY)
     }
     

@@ -21,8 +21,9 @@ class GameScene: SKScene {
     var cardsLeft:SKLabelNode = SKLabelNode(fontNamed:"Helvetica-Bold")
     var height:CGFloat = 0
     var width:CGFloat = 0
+    var cannotSelectKings:[Card] = [Card]()
     
-    // TODO LONG TERM: add animation, stats
+    // TODO LONG TERM: add animation
     // TODO undo newdeal and king
     
     override func didMoveToView(view: SKView) {
