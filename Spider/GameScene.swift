@@ -18,10 +18,10 @@ class GameScene: SKScene {
     var decksComplete: Int = 0
     var moves:[Move] = [Move]()
     var redoMoves:[Move] = [Move]()
+    var cardsLeft:SKLabelNode = SKLabelNode(fontNamed:"Helvetica-Bold")
     
     // TODO LONG TERM: add animation, stats
     // TODO resizing:keep last size. height and width constraints
-    // TODO add label to deal card (number of deals left)
     // TODO undo newdeal and king
     
     override func didMoveToView(view: SKView) {
@@ -36,6 +36,12 @@ class GameScene: SKScene {
         let dealCard = DealCard.init(scene: self)
         dealCard.zPosition = 1
         self.addChild(dealCard)
+        
+        cardsLeft.text = "5"
+        cardsLeft.zPosition = 1
+        cardsLeft.fontSize = 15
+        cardsLeft.position = CGPoint(x:1270, y:90)
+        self.addChild(cardsLeft)
 
         for mySuit in cardSuit {
             for myValue in cardValue {

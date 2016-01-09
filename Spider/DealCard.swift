@@ -34,10 +34,12 @@ class DealCard: SKSpriteNode {
             card.zPosition = CGFloat(numCards)
             card.position = CGPointMake(CGFloat(125*i+80),CGFloat(650-25*(numCards-1)))
             myScene.addChild(card)
+            myScene.cardsLeft.text = String(format:"%d",myScene.deck.count/10)
             anyDone(i)
         }
         if myScene.deck.count==0 {
             self.removeFromParent()
+            myScene.cardsLeft.removeFromParent()
         }
     }
     
