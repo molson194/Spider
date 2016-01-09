@@ -15,12 +15,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var skView: SKView!
+    let popover = NSPopover()
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         /* Pick a size for the scene */
         let scene = GameScene(size:self.skView.frame.size)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let numSuits = defaults.integerForKey("NumSuits")
         scene.scaleMode = .AspectFill
-        scene.numDecks(2)
+        scene.numDecks(numSuits)
         self.skView!.presentScene(scene)
             
         /* Sprite Kit applies additional optimizations to improve rendering performance */
@@ -44,9 +47,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func newGame(id: NSMenuItem) {
+        let newGameController = NewGameViewController()
+        popover.contentViewController = newGameController
+        let positioningRect = NSRect(x: CGRectGetMidX(window.frame)-130, y: CGRectGetHeight(window.frame)-30, width: 100, height: 100)
+        popover.showRelativeToRect(positioningRect, ofView: self.skView, preferredEdge: NSRectEdge.MinY)
+    }
+    
+    @IBAction func playGame(sender:NSButton) {
+        popover.close()
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let numSuits = defaults.integerForKey("NumSuits")
         let scene = GameScene(size:self.skView.frame.size)
         scene.scaleMode = .AspectFill
+        scene.numDecks(numSuits)
         self.skView!.presentScene(scene)
     }
     
+    @IBAction func cancelPopover(sender:NSButton) {
+        popover.close()
+    }
 }

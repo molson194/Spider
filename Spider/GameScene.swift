@@ -21,17 +21,11 @@ class GameScene: SKScene {
     
     //TODO resizing and moving card mouse location
     // TODO add animation http://stackoverflow.com/questions/27873931/swift-sprite-kit-how-do-you-set-an-animation-for-a-random-time
-    // TODO new game menu popup with deck number selection
     // TODO stats
     // TODO replay game (random seed)
     // TODO undo newdeal and king
     
     override func didMoveToView(view: SKView) {
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Spider by Matt"
-        myLabel.fontSize = 45
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
-        self.addChild(myLabel)
         
         let background = SKSpriteNode(imageNamed: "FeltBackground")
         background.position = CGPoint(x:0,y:0)

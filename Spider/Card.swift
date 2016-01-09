@@ -41,7 +41,7 @@ class Card: SKSpriteNode {
         let suit = myScene.fieldCards[column].last?.suit
         var value = 1
         for currCard in myScene.fieldCards[column].reverse() {
-            if (currCard.value != value) || (currCard.suit != suit){
+            if (currCard.value != value) || (currCard.suit != suit) || currCard.isFlipped {
                 return false
             }
             if value==13 {
@@ -136,7 +136,6 @@ class Card: SKSpriteNode {
             currMoveCards = [Card]()
             if isDone(Int(x)) {
                 for _ in 1...12 {
-                    //TODO if number of decks done is 8 game over
                     let card = myScene.fieldCards[Int(x)].removeLast()
                     card.removeFromParent()
                 }
@@ -150,6 +149,13 @@ class Card: SKSpriteNode {
                         myScene.fieldCards[Int(x)].last?.texture = SKTexture(imageNamed: String(format: "Cards/%@%d.png",(myScene.fieldCards[Int(x)].last?.suit)!,(myScene.fieldCards[Int(x)].last?.value)!))
                         myScene.fieldCards[Int(x)].last?.isFlipped = false
                     }
+                }
+                if myScene.decksComplete == 8 {
+                    let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+                    myLabel.text = "You Win!"
+                    myLabel.fontSize = 45
+                    myLabel.position = CGPoint(x:CGRectGetMidX(myScene.frame), y:CGRectGetMidY(myScene.frame))
+                    myScene.addChild(myLabel)
                 }
             }
         }

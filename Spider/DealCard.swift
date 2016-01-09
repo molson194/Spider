@@ -45,8 +45,8 @@ class DealCard: SKSpriteNode {
         let suit = myScene.fieldCards[i].last?.suit
         var value = 1
         for currCard in myScene.fieldCards[i].reverse() {
-            if (currCard.value != value) || (currCard.suit != suit){
-                break
+            if (currCard.value != value) || (currCard.suit != suit) || currCard.isFlipped {
+                return
             } else if value==13 {
                 for _ in 1...12 {
                     myScene.fieldCards[i].removeLast().removeFromParent()
