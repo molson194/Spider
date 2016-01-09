@@ -69,7 +69,7 @@
                         <items>
                             <menuItem title="New Game" keyEquivalent="n" id="qmc-XN-TPm">
                                 <connections>
-                                    <action selector="newGame:" target="-1" id="uQU-nq-DKq"/>
+                                    <action selector="newGame:" target="494" id="Jev-fJ-DXU"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Replay Game" keyEquivalent="r" id="a28-fr-e1B">

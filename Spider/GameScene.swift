@@ -72,6 +72,16 @@ class GameScene: SKScene {
         }
     }
     
+    func numDecks(num: Int) {
+        if (num == 1) {
+            cardSuit = ["Spades","Spades", "Spades", "Spades","Spades","Spades", "Spades", "Spades"]
+        } else if (num == 2) {
+            cardSuit = ["Spades","Spades", "Hearts", "Hearts","Spades","Spades", "Hearts", "Hearts"]
+        } else if (num == 4) {
+            cardSuit = ["Spades","Clubs", "Hearts", "Diamonds","Spades","Clubs", "Hearts", "Diamonds"]
+        }
+    }
+    
     func undoPressed() {
         if moves.count > 0 {
             moves.last!.undo()

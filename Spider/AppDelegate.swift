@@ -20,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         /* Pick a size for the scene */
         let scene = GameScene(size:self.skView.frame.size)
         scene.scaleMode = .AspectFill
+        scene.numDecks(2)
         self.skView!.presentScene(scene)
             
         /* Sprite Kit applies additional optimizations to improve rendering performance */
@@ -40,6 +41,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func redoMove(id: NSMenuItem) {
         let myScene = self.skView.scene as! GameScene
         myScene.redoPressed()
+    }
+    
+    @IBAction func newGame(id: NSMenuItem) {
+        let scene = GameScene(size:self.skView.frame.size)
+        scene.scaleMode = .AspectFill
+        self.skView!.presentScene(scene)
     }
     
 }
