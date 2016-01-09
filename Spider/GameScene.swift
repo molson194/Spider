@@ -19,10 +19,9 @@ class GameScene: SKScene {
     var moves:[Move] = [Move]()
     var redoMoves:[Move] = [Move]()
     
-    //TODO resizing and moving card mouse location
-    // TODO add animation http://stackoverflow.com/questions/27873931/swift-sprite-kit-how-do-you-set-an-animation-for-a-random-time
-    // TODO stats
-    // TODO replay game (random seed)
+    // TODO LONG TERM: add animation, stats
+    // TODO resizing:keep last size. height and width constraints
+    // TODO add label to deal card (number of deals left)
     // TODO undo newdeal and king
     
     override func didMoveToView(view: SKView) {

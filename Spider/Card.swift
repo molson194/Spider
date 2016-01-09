@@ -88,11 +88,11 @@ class Card: SKSpriteNode {
     }
     
     override func mouseDown(theEvent: NSEvent) {
-        startPosition = theEvent.locationInWindow.x
-        startPosition = floor(startPosition/125)
+        startPosition = theEvent.locationInNode(myScene).x
+        startPosition = floor((startPosition-10)/125)
         canMove = canMoveFunc()
         if canMove {
-            while myScene.fieldCards[Int(startPosition)].last! != self {
+            while myScene.fieldCards[Int(startPosition)].last != self {
                 currMoveCards.append(myScene.fieldCards[Int(startPosition)].removeLast())
             }
             currMoveCards.append(myScene.fieldCards[Int(startPosition)].removeLast())
@@ -103,7 +103,7 @@ class Card: SKSpriteNode {
         if canMove {
             var i=0
             for moveCard in currMoveCards.reverse() {
-                let action = SKAction.moveTo(CGPoint(x:theEvent.locationInWindow.x,y:theEvent.locationInWindow.y-40+CGFloat(i*25)),duration:0);
+                let action = SKAction.moveTo(CGPoint(x:theEvent.locationInNode(myScene).x,y:theEvent.locationInNode(myScene).y-40+CGFloat(i*25)),duration:0);
                 moveCard.zPosition = CGFloat(50-i);
                 moveCard.runAction(action)
                 i--
@@ -113,7 +113,7 @@ class Card: SKSpriteNode {
     
     override func mouseUp(theEvent: NSEvent) {
         if canMove {
-            var x = floor(theEvent.locationInWindow.x/125)
+            var x = floor(theEvent.locationInNode(myScene).x/125)
             if !canPlace(Int(x)) {
                 x = startPosition
             } else {

@@ -20,7 +20,7 @@ class DealCard: SKSpriteNode {
     init (scene:GameScene) {
         myScene = scene
         let texture = SKTexture(imageNamed: "CardBack")
-        super.init(texture: texture, color: NSColor.clearColor(), size: CGSizeMake(100, 150))
+        super.init(texture: texture, color: NSColor.clearColor(), size: CGSizeMake(110, 150))
         self.position = CGPoint(x: 1200, y: 150)
         self.userInteractionEnabled = true
     }

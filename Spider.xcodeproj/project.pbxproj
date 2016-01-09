@@ -69,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				F0D5733C1C3CCA3F00746598 /* AppDelegate.swift */,
+				F0D573441C3CCA3F00746598 /* MainMenu.xib */,
 				F0D5733E1C3CCA3F00746598 /* GameScene.swift */,
 				F0C3A8A31C3DC2C30081CE65 /* Card.swift */,
 				F088639D1C3F4AA200D42D00 /* DealCard.swift */,
@@ -76,7 +77,6 @@
 				F0DFA5A81C40B645001BBEAA /* NewGameViewController.swift */,
 				F0DFA5A91C40B645001BBEAA /* NewGameViewController.xib */,
 				F0D573421C3CCA3F00746598 /* Assets.xcassets */,
-				F0D573441C3CCA3F00746598 /* MainMenu.xib */,
 				F0D573471C3CCA3F00746598 /* Info.plist */,
 				F065AE8A1C3F82A6004F1971 /* Cards */,
 				F09BC1621C3E54CB00F369FD /* FeltBackground.jpg */,

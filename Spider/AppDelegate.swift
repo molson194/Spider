@@ -19,8 +19,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         /* Pick a size for the scene */
-        let scene = GameScene(size:self.skView.frame.size)
         let defaults = NSUserDefaults.standardUserDefaults()
+        let height = defaults.integerForKey("Height")
+        let width = defaults.integerForKey("Width")
+        let scene:GameScene
+        if(height == 0 || width == 0) {
+            scene = GameScene(size:self.skView.frame.size)
+        } else {
+            scene = GameScene(size:CGSize(width: width, height: height))
+            window.setContentSize(CGSize(width: width, height: height))
+        }
+        
+        
         let numSuits = defaults.integerForKey("NumSuits")
         scene.scaleMode = .AspectFill
         scene.numDecks(numSuits)
@@ -30,6 +40,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.skView!.ignoresSiblingOrder = true
         self.skView!.showsFPS = true
         self.skView!.showsNodeCount = true
+    }
+    
+    func applicationWillTerminate(notification: NSNotification) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue(self.skView.frame.size.height, forKey: "Height")
+        defaults.setValue(self.skView.frame.size.width, forKey: "Width")
+        defaults.synchronize()
     }
     
     func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {

@@ -72,11 +72,6 @@
                                     <action selector="newGame:" target="494" id="Jev-fJ-DXU"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Replay Game" keyEquivalent="r" id="a28-fr-e1B">
-                                <connections>
-                                    <action selector="replayGame:" target="-1" id="k1q-la-BL5"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Undo Move" keyEquivalent="z" id="45B-Hy-RM6">
                                 <connections>
                                     <action selector="undoMove:" target="494" id="MdS-8I-nKZ"/>
