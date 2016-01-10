@@ -8,4 +8,8 @@ We hope you enjoy Spider!
 
 ## Screenshots
 
-![UI V2]()
+![UI V2](https://github.com/molson194/Spider/blob/master/Spider/ScreenShot1.png)
+
+![UI V2](https://github.com/molson194/Spider/blob/master/Spider/ScreenShot2.png)
+
+![UI V2](https://github.com/molson194/Spider/blob/master/Spider/ScreenShot3.png)
