@@ -13,6 +13,7 @@
 		F0602C9F1C407EEE000EAA0D /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0602C9E1C407EEE000EAA0D /* Move.swift */; };
 		F065AE8B1C3F82A6004F1971 /* CardBack.png in Resources */ = {isa = PBXBuildFile; fileRef = F065AE891C3F82A6004F1971 /* CardBack.png */; };
 		F065AE8C1C3F82A6004F1971 /* Cards in Resources */ = {isa = PBXBuildFile; fileRef = F065AE8A1C3F82A6004F1971 /* Cards */; };
+		F06CA01B1C43095B003C7B2E /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F06CA01A1C43095B003C7B2E /* Logo.png */; };
 		F088639E1C3F4AA200D42D00 /* DealCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F088639D1C3F4AA200D42D00 /* DealCard.swift */; };
 		F09BC1631C3E54CB00F369FD /* FeltBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F09BC1621C3E54CB00F369FD /* FeltBackground.jpg */; };
 		F0C3A8A41C3DC2C30081CE65 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C3A8A31C3DC2C30081CE65 /* Card.swift */; };
@@ -31,6 +32,7 @@
 		F0602C9E1C407EEE000EAA0D /* Move.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
 		F065AE891C3F82A6004F1971 /* CardBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CardBack.png; sourceTree = "<group>"; };
 		F065AE8A1C3F82A6004F1971 /* Cards */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cards; sourceTree = "<group>"; };
+		F06CA01A1C43095B003C7B2E /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		F088639D1C3F4AA200D42D00 /* DealCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DealCard.swift; sourceTree = "<group>"; };
 		F08E01191C42F7B30061A262 /* Spider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Spider.entitlements; sourceTree = "<group>"; };
 		F09BC1621C3E54CB00F369FD /* FeltBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FeltBackground.jpg; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				F03D4C8D1C4303D000AB81D3 /* ScreenShot1.png */,
 				F03D4C8F1C4303DE00AB81D3 /* ScreenShot2.png */,
 				F03D4C901C4303DE00AB81D3 /* ScreenShot3.png */,
+				F06CA01A1C43095B003C7B2E /* Logo.png */,
 			);
 			path = Spider;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			files = (
 				F03D4C921C4303DE00AB81D3 /* ScreenShot3.png in Resources */,
 				F065AE8B1C3F82A6004F1971 /* CardBack.png in Resources */,
+				F06CA01B1C43095B003C7B2E /* Logo.png in Resources */,
 				F0DFA5AB1C40B645001BBEAA /* NewGameViewController.xib in Resources */,
 				F03D4C911C4303DE00AB81D3 /* ScreenShot2.png in Resources */,
 				F0D573431C3CCA3F00746598 /* Assets.xcassets in Resources */,
