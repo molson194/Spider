@@ -27,6 +27,7 @@ class DealCard: SKSpriteNode {
 
     
     override func mouseUp(theEvent: NSEvent) {
+        myScene.redoMoves = [Move]()
         for i in 0...9 {
             let card = myScene.deck.removeFirst()
             myScene.fieldCards[i].append(card)

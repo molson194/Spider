@@ -88,15 +88,37 @@ class GameScene: SKScene {
     
     func undoPressed() {
         if moves.count > 0 {
-            moves.last!.undo()
-            redoMoves.append(moves.removeLast())
+            while (moves.last?.moveType == "King") || (moves.last?.moveType == "Deal") {
+                if moves.last?.moveType == "King" {
+                    moves.last!.undoKing()
+                } else {
+                    
+                }
+                redoMoves.append(moves.removeLast())
+            }
+            if moves.last?.moveType == "Shift" {
+                moves.last!.undoShift()
+                redoMoves.append(moves.removeLast())
+            }
         }
     }
     
     func redoPressed() {
         if redoMoves.count > 0 {
-            redoMoves.last!.redo()
-            moves.append(redoMoves.removeLast())
+            if redoMoves.last?.moveType == "Shift" {
+                redoMoves.last!.redoShift()
+                moves.append(redoMoves.removeLast())
+            }
+        }
+        if redoMoves.count > 0 {
+            while (redoMoves.last?.moveType == "King") || (redoMoves.last?.moveType == "Deal") {
+                if redoMoves.last?.moveType == "King" {
+                    redoMoves.last!.redoKing()
+                } else {
+                    
+                }
+                moves.append(redoMoves.removeLast())
+            }
         }
     }
 }

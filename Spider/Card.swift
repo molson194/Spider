@@ -117,7 +117,8 @@ class Card: SKSpriteNode {
             if !canPlace(Int(x)) {
                 x = startPosition
             } else {
-                myScene.moves.append(Move(scene:myScene, startPos: Int(startPosition),endPos: Int(x),cards: currMoveCards))
+                myScene.moves.append(Move(scene:myScene, type:"Shift",startPos: Int(startPosition),endPos: Int(x),cards: currMoveCards))
+                myScene.redoMoves = [Move]()
             }
             for moveCard in currMoveCards.reverse() {
                 myScene.fieldCards[Int(x)].append(moveCard)
@@ -135,20 +136,25 @@ class Card: SKSpriteNode {
             }
             currMoveCards = [Card]()
             if isDone(Int(x)) {
+                var moveCards:[Card] = [Card]()
                 for _ in 1...12 {
                     let card = myScene.fieldCards[Int(x)].removeLast()
+                    moveCards.append(card)
                     card.removeFromParent()
                 }
                 let card = myScene.fieldCards[Int(x)].removeLast()
+                moveCards.append(card)
                 myScene.cannotSelectKings.append(card)
                 card.zPosition = 35 + CGFloat(myScene.decksComplete)
                 let action = SKAction.moveTo(CGPoint(x:myScene.width/14+30*CGFloat(myScene.decksComplete),y:myScene.width/14), duration: 0.5);
                 card.runAction(action)
                 myScene.decksComplete++
+                myScene.moves.append(Move(scene: myScene, type: "King", startPos: Int(x), endPos: -1, cards: moveCards))
                 if myScene.fieldCards[Int(x)].count>0 {
                     if ((myScene.fieldCards[Int(x)].last?.isFlipped) == true) {
                         myScene.fieldCards[Int(x)].last?.texture = SKTexture(imageNamed: String(format: "Cards/%@%d.png",(myScene.fieldCards[Int(x)].last?.suit)!,(myScene.fieldCards[Int(x)].last?.value)!))
                         myScene.fieldCards[Int(x)].last?.isFlipped = false
+                        myScene.moves.last!.flipLast = true
                     }
                 }
                 if myScene.decksComplete == 8 {
