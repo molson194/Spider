@@ -145,7 +145,7 @@ class Card: SKSpriteNode {
                 let card = myScene.fieldCards[Int(x)].removeLast()
                 moveCards.append(card)
                 myScene.cannotSelectKings.append(card)
-                card.zPosition = 35 + CGFloat(myScene.decksComplete)
+                card.zPosition = 2 + CGFloat(myScene.decksComplete)
                 let action = SKAction.moveTo(CGPoint(x:myScene.width/14+30*CGFloat(myScene.decksComplete),y:myScene.width/14), duration: 0.5);
                 card.runAction(action)
                 myScene.decksComplete++

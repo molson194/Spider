@@ -24,6 +24,8 @@ class GameScene: SKScene {
     var cannotSelectKings:[Card] = [Card]()
     
     // TODO LONG TERM: add animation
+    // http://www.raywenderlich.com/76718/card-game-mechanics-sprite-kit-swift
+    // http://www.gamefromscratch.com/page/SpriteKit-game-development-with-Swift-tutorial-series.aspx
     
     override func didMoveToView(view: SKView) {
         

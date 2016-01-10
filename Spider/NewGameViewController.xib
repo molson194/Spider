@@ -21,7 +21,7 @@
                     <rect key="frame" x="14" y="13" width="82" height="32"/>
                     <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QTc-J9-G3H">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system" size="18"/>
+                        <font key="font" metaFont="system" size="15"/>
                         <string key="keyEquivalent" base64-UTF8="YES">
 Gw
 </string>
@@ -31,9 +31,9 @@ Gw
                     </connections>
                 </button>
                 <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XPp-EJ-vvr">
-                    <rect key="frame" x="41" y="59" width="103" height="24"/>
+                    <rect key="frame" x="48" y="59" width="94" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="BjW-Fp-ikX">
-                        <font key="font" metaFont="system" size="20"/>
+                        <font key="font" metaFont="system" size="15"/>
                         <segments>
                             <segment label="1"/>
                             <segment label="2" tag="1"/>
@@ -56,7 +56,7 @@ Gw
                     <rect key="frame" x="90" y="13" width="81" height="32"/>
                     <buttonCell key="cell" type="push" title="Play" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YM4-PV-uvg">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system" size="18"/>
+                        <font key="font" metaFont="system" size="15"/>
                     </buttonCell>
                     <connections>
                         <action selector="playGame:" target="-1" id="VSF-gk-gq5"/>
