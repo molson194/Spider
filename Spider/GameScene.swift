@@ -55,7 +55,7 @@ class GameScene: SKScene {
                 deck.append(newCard)
             }
         }
-        deck = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(deck) as! [Card]
+        //deck = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(deck) as! [Card] TODO
 
         for i in 0...53 {
             let x = i%10
