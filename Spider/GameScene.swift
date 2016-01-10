@@ -24,7 +24,6 @@ class GameScene: SKScene {
     var cannotSelectKings:[Card] = [Card]()
     
     // TODO LONG TERM: add animation
-    // TODO undo king (for new deal)
     
     override func didMoveToView(view: SKView) {
         
@@ -55,7 +54,7 @@ class GameScene: SKScene {
                 deck.append(newCard)
             }
         }
-        //deck = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(deck) as! [Card] TODO
+        deck = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(deck) as! [Card]
 
         for i in 0...53 {
             let x = i%10
