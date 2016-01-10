@@ -26,6 +26,7 @@
 		F065AE891C3F82A6004F1971 /* CardBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CardBack.png; sourceTree = "<group>"; };
 		F065AE8A1C3F82A6004F1971 /* Cards */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cards; sourceTree = "<group>"; };
 		F088639D1C3F4AA200D42D00 /* DealCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DealCard.swift; sourceTree = "<group>"; };
+		F08E01191C42F7B30061A262 /* Spider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Spider.entitlements; sourceTree = "<group>"; };
 		F09BC1621C3E54CB00F369FD /* FeltBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FeltBackground.jpg; sourceTree = "<group>"; };
 		F0C3A8A31C3DC2C30081CE65 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F0D573391C3CCA3F00746598 /* Spider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spider.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +79,7 @@
 				F0DFA5A91C40B645001BBEAA /* NewGameViewController.xib */,
 				F0D573421C3CCA3F00746598 /* Assets.xcassets */,
 				F0D573471C3CCA3F00746598 /* Info.plist */,
+				F08E01191C42F7B30061A262 /* Spider.entitlements */,
 				F065AE8A1C3F82A6004F1971 /* Cards */,
 				F09BC1621C3E54CB00F369FD /* FeltBackground.jpg */,
 				F065AE891C3F82A6004F1971 /* CardBack.png */,
@@ -118,6 +120,11 @@
 					F0D573381C3CCA3F00746598 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = TH5V2K4K28;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -267,6 +274,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Spider/Spider.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Spider/Info.plist;
@@ -281,6 +289,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Spider/Spider.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Spider/Info.plist;
