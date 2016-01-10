@@ -24,7 +24,7 @@ class GameScene: SKScene {
     var cannotSelectKings:[Card] = [Card]()
     
     // TODO LONG TERM: add animation
-    // TODO undo newdeal and king
+    // TODO undo king (for new deal)
     
     override func didMoveToView(view: SKView) {
         
@@ -88,18 +88,16 @@ class GameScene: SKScene {
     
     func undoPressed() {
         if moves.count > 0 {
-            while (moves.last?.moveType == "King") || (moves.last?.moveType == "Deal") {
-                if moves.last?.moveType == "King" {
-                    moves.last!.undoKing()
-                } else {
-                    
-                }
+            while moves.last?.moveType == "King" {
+                moves.last!.undoKing()
                 redoMoves.append(moves.removeLast())
             }
             if moves.last?.moveType == "Shift" {
                 moves.last!.undoShift()
-                redoMoves.append(moves.removeLast())
+            } else if moves.last?.moveType == "Deal" {
+                moves.last!.undoDeal()
             }
+            redoMoves.append(moves.removeLast())
         }
     }
     
@@ -107,16 +105,14 @@ class GameScene: SKScene {
         if redoMoves.count > 0 {
             if redoMoves.last?.moveType == "Shift" {
                 redoMoves.last!.redoShift()
-                moves.append(redoMoves.removeLast())
+            } else if redoMoves.last?.moveType == "Deal" {
+                redoMoves.last!.redoDeal()
             }
+            moves.append(redoMoves.removeLast())
         }
         if redoMoves.count > 0 {
-            while (redoMoves.last?.moveType == "King") || (redoMoves.last?.moveType == "Deal") {
-                if redoMoves.last?.moveType == "King" {
-                    redoMoves.last!.redoKing()
-                } else {
-                    
-                }
+            while redoMoves.last?.moveType == "King"{
+                redoMoves.last!.redoKing()
                 moves.append(redoMoves.removeLast())
             }
         }

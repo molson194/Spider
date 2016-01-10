@@ -28,8 +28,10 @@ class DealCard: SKSpriteNode {
     
     override func mouseUp(theEvent: NSEvent) {
         myScene.redoMoves = [Move]()
+        var dealCards = [Card]()
         for i in 0...9 {
             let card = myScene.deck.removeFirst()
+            dealCards.append(card)
             myScene.fieldCards[i].append(card)
             let numCards = myScene.fieldCards[i].count
             card.zPosition = CGFloat(numCards)
@@ -38,6 +40,7 @@ class DealCard: SKSpriteNode {
             myScene.cardsLeft.text = String(format:"%d",myScene.deck.count/10)
             anyDone(i)
         }
+        myScene.moves.append(Move(scene: myScene, type: "Deal", startPos: -1, endPos: -1, cards: dealCards))
         if myScene.deck.count==0 {
             self.removeFromParent()
             myScene.cardsLeft.removeFromParent()

@@ -65,6 +65,33 @@ class Move: NSObject {
         myScene.decksComplete--
     }
     
+    func undoDeal() {
+        if myScene.deck.count == 0 {
+            let dealCard = DealCard.init(scene: myScene)
+            dealCard.zPosition = 1
+            dealCard.name = "Deal Card"
+            myScene.addChild(dealCard)
+            myScene.cardsLeft.text = "5"
+            myScene.cardsLeft.zPosition = 1
+            myScene.cardsLeft.fontSize = 15
+            myScene.cardsLeft.position = CGPoint(x:myScene.width*13/14-75, y:30)
+            myScene.addChild(myScene.cardsLeft)
+        }
+        for i in 0...9 {
+            let card = myScene.fieldCards[i].removeLast()
+            card.removeFromParent()
+        }
+        var newDeck = [Card]()
+        for card in cardsMoved {
+            newDeck.append(card)
+        }
+        for card in myScene.deck {
+            newDeck.append(card)
+        }
+        myScene.deck = newDeck
+        myScene.cardsLeft.text = String(format:"%d",myScene.deck.count/10)
+    }
+    
     func redoShift() {
         for card in cardsMoved.reverse() {
             myScene.fieldCards[sPosition].removeLast()
@@ -96,7 +123,22 @@ class Move: NSObject {
             myScene.fieldCards[sPosition].last!.texture = SKTexture(imageNamed: String(format: "Cards/%@%d.png",(myScene.fieldCards[sPosition].last?.suit)!,(myScene.fieldCards[sPosition].last?.value)!))
             myScene.fieldCards[sPosition].last!.isFlipped = false
         }
-
+    }
+    
+    func redoDeal() {
+        for i in 0...9 {
+            let card = myScene.deck.removeFirst()
+            myScene.fieldCards[i].append(card)
+            let numCards = myScene.fieldCards[i].count
+            card.zPosition = CGFloat(numCards)
+            card.position = CGPointMake(myScene.width/10*CGFloat(i)+myScene.width/20,myScene.height-myScene.width/15-CGFloat(25*(numCards-1)))
+            myScene.addChild(card)
+            myScene.cardsLeft.text = String(format:"%d",myScene.deck.count/10)
+        }
+        if myScene.deck.count == 0 {
+            myScene.cardsLeft.removeFromParent()
+            myScene.childNodeWithName("Deal Card")?.removeFromParent()
+        }
         
     }
 }
