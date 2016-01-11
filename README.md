@@ -15,6 +15,7 @@ Do you like to play Spider? Do you enjoy using your brain? Do you want an easy-t
 * Simple User Interface
 
 ## Screenshots
+
 Start up screen
 ![UI V2](https://github.com/molson194/Spider/blob/master/Spider/ScreenShot1.png)
 
